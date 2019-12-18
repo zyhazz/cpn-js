@@ -24,10 +24,6 @@ var server = net.createServer((client) => {
 
     io.emit('status', listConnections);
 
-    console.log("conectado");
-
-    //client.write("prot|test|123");console.log("sent payload");
-    
     client.on('data', (data) => {
         io.emit('response', decodeMsg(data));
     });
@@ -41,14 +37,12 @@ var server = net.createServer((client) => {
         console.log(err);
     })
     
-    //client.pipe(client);
 });
 
 io.on("connect",(client) => {
     client.on('request', (msg) => {
         listConnections.forEach((i) => {
             i.write(encodeMsg(msg));
-            console.log("msg sent:", i, msg)
         })
     })
     io.emit('status', listConnections);
@@ -74,9 +68,9 @@ app.get('/', function(req, res){
 app.use(express.static('public'));
 
 server.listen(8000, '127.0.0.1', () => {
-    console.log('listening on *:8000');
+    console.log('listening cpn on *:8000');
 });
 
 http.listen(3000, function(){
-    console.log('listening on *:3000');
+    console.log('listening web on *:3000');
 });

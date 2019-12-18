@@ -22,24 +22,19 @@ var server = net.createServer((client) => {
     
     listConnections.push(client);
 
-    io.emit('broadcast', listConnections);
+    io.emit('status', listConnections);
 
     console.log("conectado");
 
     //client.write("prot|test|123");console.log("sent payload");
     
     client.on('data', (data) => {
-        console.log(data);
-        console.log(decodeMsg(data));
-        //console.log(prepareMsg(data).toString());
-        client.write(data.toString())
-        //client.write("prot$test$123".toString());
+        io.emit('response', decodeMsg(data));
     });
     
     client.on('end', () => {
         listConnections.r
-        io.emit('broadcast', listConnections);
-        console.log('desconectado');
+        io.emit('status', listConnections);
     });
 
     client.on('error', (err) => {
@@ -50,12 +45,13 @@ var server = net.createServer((client) => {
 });
 
 io.on("connect",(client) => {
-    client.on('msg', (msg) => {
+    client.on('request', (msg) => {
         listConnections.forEach((i) => {
-            i.write(prepareMsg(msg).toString());
+            i.write(encodeMsg(msg));
             console.log("msg sent:", i, msg)
         })
     })
+    io.emit('status', listConnections);
 })
 app.get('/n', (req, res) => {
     server.getConnections((err, count) => {

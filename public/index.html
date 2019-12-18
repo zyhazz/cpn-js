@@ -1,61 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Vue.js + Bootstrap</title>
-  
-  <!-- Vue.js -->
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-  
-  <!-- Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.2/dist/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://mladenplavsic.github.io/bootstrap-navbar-sidebar/navbar-fixed-left.min.css">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>CPN-Tools Javascript Calculator</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+  </head>
 
-<body>
-  <div id="app">
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-left">
-    <a class="navbar-brand" href="">App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">Contact</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item">Action</a>
-                    <a class="dropdown-item">Another action</a>
-                    <a class="dropdown-item">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item">Separated link</a>
-                    <a class="dropdown-item">One more separated link</a>
-                </div>
-            </li>
+  <body>
+    <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+      <a class="navbar-brand" href="#">CPN-Tools Calc</a>
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link waves-effect waves-light" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
         </ul>
-    </div>
-  </nav>
-  <div class="container">
+        <form class="form-inline">
+          <div class="md-form my-0 text-light">
+            CPN Online: {{sockets}}
+          </div>
+        </form>
+      </div>
+    </nav>
+    <!-- Navbar -->
+  
+    <main>
+      <div class="container-fluid">
+    <div class="calculator card">
 
+      <input type="text" class="calculator-screen z-depth-1" :value="display" disabled>
+
+      <div class="calculator-keys">
+
+        <button type="button" class="btn btn-info" @click="inputOperator('plus')">+</button>
+        <button type="button" class="btn btn-info" @click="inputOperator('minus')">-</button>
+        <button type="button" class="btn btn-info" @click="inputOperator('times')">&#xD7;</button>
+        <button type="button" class="btn btn-info" @click="inputOperator('divided')">&#xF7;</button>
+
+        <button type="button" @click="inputDigit(7)" class="btn btn-light waves-effect">7</button>
+        <button type="button" @click="inputDigit(8)" class="btn btn-light waves-effect">8</button>
+        <button type="button" @click="inputDigit(9)" class="btn btn-light waves-effect">9</button>
+
+
+        <button type="button" @click="inputDigit(4)" class="btn btn-light waves-effect">4</button>
+        <button type="button" @click="inputDigit(5)" class="btn btn-light waves-effect">5</button>
+        <button type="button" @click="inputDigit(6)" class="btn btn-light waves-effect">6</button>
+
+
+        <button type="button" @click="inputDigit(1)" class="btn btn-light waves-effect">1</button>
+        <button type="button" @click="inputDigit(2)" class="btn btn-light waves-effect">2</button>
+        <button type="button" @click="inputDigit(3)" class="btn btn-light waves-effect">3</button>
+
+
+        <button type="button" @click="inputDigit(0)" class="btn btn-light waves-effect">0</button>
+        <button type="button" class="btn btn-secondary" @click="inputDecimal">.</button>
+        <button type="button" class="btn btn-danger btn-sm" @click="reset">AC</button>
+
+        <button type="button" class="equal-sign btn btn-default" @click="inputOperator('equal')">=</button>
+
+      </div>
+    </div>
   </div>
+  </main>
 </div>
-  <!-- Project -->
-  <script src="app.js"></script>
-</body>
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+
 </html>

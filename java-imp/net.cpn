@@ -70,7 +70,7 @@
         <textattr colour="Black"
                   bold="false"/>
         <label/>
-        <text>openConnection(&quot;Con1&quot;, &quot;localhost&quot;,9000);</text>
+        <text>openConnection(&quot;Con1&quot;, &quot;localhost&quot;,8000);</text>
       </Aux>
       <Aux id="ID1422315663">
         <posattr x="-113.000000"
@@ -84,7 +84,7 @@
         <textattr colour="Black"
                   bold="false"/>
         <label/>
-        <text>send(&quot;Con1&quot;, f, stringEncode);</text>
+        <text>send(&quot;Con1&quot;, &quot;hi&quot;, stringEncode);</text>
       </Aux>
       <Aux id="ID1422315760">
         <posattr x="-114.000000"
@@ -112,7 +112,7 @@
         <textattr colour="Black"
                   bold="false"/>
         <label/>
-        <text>send(&quot;Con1&quot;, f, stringEncode);</text>
+        <text>send(&quot;Con1&quot;, &quot;hoi&quot;, stringEncode);</text>
       </Aux>
       <Aux id="ID1422316061">
         <posattr x="-112.000000"
@@ -142,6 +142,20 @@
         <label/>
         <text>closeConnection(&quot;Con1&quot;);</text>
       </Aux>
+      <Aux id="ID1425088715">
+        <posattr x="-210.000000"
+                 y="-98.000000"/>
+        <fillattr colour="White"
+                  pattern=""
+                  filled="false"/>
+        <lineattr colour="Black"
+                  thick="1"
+                  type="Solid"/>
+        <textattr colour="Black"
+                  bold="false"/>
+        <label/>
+        <text>use(&quot;t.sml&quot;)</text>
+      </Aux>
     </page>
     <instances>
       <instance id="ID2149"
@@ -168,17 +182,7 @@
           <text>&lt;same as model&gt;</text>
         </value>
       </option>
-      <option name="extensions.10001.enable">
-        <value>
-          <boolean>true</boolean>
-        </value>
-      </option>
-      <option name="extensions.10003.enable">
-        <value>
-          <boolean>true</boolean>
-        </value>
-      </option>
-      <option name="extensions.10005.enable">
+      <option name="extensions.10004.enable">
         <value>
           <boolean>true</boolean>
         </value>
@@ -188,7 +192,22 @@
           <boolean>true</boolean>
         </value>
       </option>
+      <option name="extensions.10003.enable">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
       <option name="extensions.10006.enable">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="extensions.10005.enable">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="extensions.10001.enable">
         <value>
           <boolean>true</boolean>
         </value>
@@ -390,11 +409,11 @@
       </option>
     </options>
     <binders>
-      <cpnbinder id="ID1422315877"
-                 x="594"
-                 y="225"
-                 width="600"
-                 height="400">
+      <cpnbinder id="ID1425088754"
+                 x="538"
+                 y="156"
+                 width="1077"
+                 height="728">
         <sheets>
           <cpnsheet id="ID2215"
                     panx="26.000000"
@@ -475,11 +494,10 @@
           <IndexNode expanded="false"/>
           <IndexNode expanded="false"/>
           <IndexNode expanded="false"/>
+          <IndexNode expanded="false"/>
         </IndexNode>
       </IndexNode>
-      <IndexNode expanded="false">
-        <IndexNode expanded="false"/>
-      </IndexNode>
+      <IndexNode expanded="false"/>
       <IndexNode expanded="false">
         <IndexNode expanded="false">
           <IndexNode expanded="true"/>

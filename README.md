@@ -1,4 +1,4 @@
-CBIE
+Example of communications for CPN-Tools using NodeJS and WebSockets
 ====
 
-Artigo CBIE
+todo: instructions
